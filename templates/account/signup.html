@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>{{ system_name }} : {{ member_name }}</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/universal.css') }}" />
     <style>
             body {
@@ -23,7 +23,7 @@
   height: auto;
 
   border-radius: 12px;
-  background: {{ color_1 }};
+  background: linear-gradient(to bottom, #47312d, #d3aa93);
 }
 
 #main {
@@ -34,7 +34,7 @@
   margin: 1%;
 
   border-radius: 12px;
-  background: linear-gradient(to bottom, {{ color_1 }}, {{ color_2 }});
+  background: linear-gradient(to bottom, #1c1312, #55443b);
 
   padding-top: 5%;
   padding-bottom: 5%;
@@ -52,7 +52,7 @@
   margin-left: 5%;
   margin-top: -15%;
   border-radius: 50%;
-  border: 5px solid {{ color_1 }};
+  border: 5px solid #302420;
   margin-bottom: 0;
 }
 
@@ -120,8 +120,46 @@
 }
 
 #frosted a {
-  text-decoration: none;
-  color: #ffffff;
+  color: #ADD8E6;
+}
+
+#frosted form {
+text-align: center;
+}
+
+#frosted form input {
+    margin: 2%;
+    padding: 2%;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 24px;
+    border: 1px solid #c3c3c3;
+    transition: 0.2s ease-out;
+    color: #ffffff;
+}
+
+#frosted form input:hover {
+    border: 1px solid #ffffff;
+}
+
+#frosted form input:focus {
+    border: 1px solid #ffffff;
+    transform: scale(1.05);
+}
+
+#frosted form button {
+    margin: 2%;
+    padding: 2.5%;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 24px;
+    border: 1px solid #c3c3c3;
+    transition: 0.2s ease-out;
+    color: #ffffff;
+}
+
+#frosted form button:hover {
+    border: 1px solid #ffffff;
+    background: rgba(100, 100, 100, 0.2);
+    transform: scale(1.05);
 }
 
 
@@ -131,35 +169,27 @@
 
 <div id="outer">
     <div id="main">
-        <!-- DO NOT EDIT ABOVE THIS POINT -->
-
-        <!-- THIS ONE IS FOR THE BANNER -->
-        <img
-                src="{{ banner_url }}"
-                id="banner"
-        />
-
-        <!-- THIS ONE IS THE PFP - IF ITS NOT SQUARE IT WILL SQUISH -->
-        <img
-                src="{{ profile_picture_url }}"
-                id="pfp"
-        />
 
         <div id="frosted">
-            <span style="font-size: 3vh"><b> {{ name }}</b></span>
-            <span style="font-size: 2vh; color: #b8babd">&nbsp; {{ pronouns }}</span>
+            <span style="font-size: 5vh"><b>Sign Up</b></span>
             <br/>
-            <span style="font-size: 2vh; color: #b8babd"> {{ role }}</span> <br/>
-            <span style="font-size: 2vh; color: #b8babd"> {{ age }} ({{ age_category }})</span>
+            <span style="font-size: 2vh; color: #b8babd">Creating New Account</span> <br/>
             <hr/>
 
-            <u>Proxy tags: </u> {{ proxy_tags }}<br/>
-            <u>Typing quirk:</u> {{ typing_quirk }}<br/>
-            <u>Description:</u> {{ description }}<br/>
-            <u>Extra Info:</u> {{ extra_info }}
+            <form method="post">
+                <input type="text" name="username" placeholder="Username..." /><br />
+                <input type="password" name="password" placeholder="Password..." /><br />
+                <input type="password" name="password_repeat" placeholder="Retype Password..." /><br />
+                <button type="submit">Sign Up</button><br />
 
-            <br/>
-            <hr/>
+                {{ status }}
+
+                 <br />
+            <br />
+            Already have an account? <br /><a href="/account/login">Log In</a>
+
+            </form>
+
 
         </div>
     </div>

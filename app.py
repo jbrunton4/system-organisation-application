@@ -5,8 +5,9 @@ app = flask.Flask(__name__)
 import objects
 
 from pages.system.member import view
-from pages.system import view
-
+from pages.system import view, edit
+from pages.account import signup, welcome
+from error_handler import error_404
 
 
 

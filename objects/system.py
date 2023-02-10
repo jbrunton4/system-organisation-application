@@ -1,6 +1,7 @@
 import json
 import uuid
 from __main__ import objects
+from secrets import token_urlsafe
 
 from typing import List
 
@@ -12,6 +13,11 @@ class System:
         # initialise attributes
         self._uuid: str = str(uuid.uuid4())
 
+        self.username: str = str()
+        self.password: str = str()
+        self.token: str = str(token_urlsafe(64))
+        self.color_1: str = "#000000"
+        self.color_2: str = "#ffffff"
         self.name: str = str()
         self.description: str = str()
         self.system_tag: str = str()
@@ -23,11 +29,16 @@ class System:
         # if a valid UUID is passed, load data
         self._load_data(system_uuid)
 
-    def _save_data(self):
+    def save_data(self):
         with open("data/systems.json", "r") as fh:
             systems_data = json.load(fh)
 
         systems_data[self._uuid] = {
+            "username": self.username,
+            "password": self.password,
+            "token": self.token,
+            "color_1": self.color_1,
+            "color_2": self.color_2,
             "name": self.name,
             "members": self._members,
             "description": self.description,
@@ -36,7 +47,7 @@ class System:
             "banner_url": self.banner_url
         }
 
-        with open("data/systems.json", "r") as fh:
+        with open("data/systems.json", "w") as fh:
             json.dump(systems_data, fh)
 
     def _load_data(self, system_uuid) -> None:
@@ -56,13 +67,21 @@ class System:
         # modify instance attributes
         self._uuid = system_uuid
 
+        self.username = system_data[system_uuid]["username"]
+        self.password = system_data[system_uuid]["password"]
+        self.token = system_data[system_uuid]["token"]
         self.name = system_data[system_uuid]["name"]
+        self.color_1 = system_data[system_uuid]["color_1"]
+        self.color_2 = system_data[system_uuid]["color_2"]
         self.description = system_data[system_uuid]["description"]
         self.system_tag = system_data[system_uuid]["system_tag"]
         self.profile_picture_url = system_data[system_uuid]["profile_picture_url"]
         self.banner_url = system_data[system_uuid]["banner_url"]
 
         self._members = system_data[system_uuid]["members"]
+
+    def get_uuid(self) -> str:
+        return self._uuid
 
     def get_members(self) -> List[str]:
         """
@@ -100,6 +119,16 @@ class SystemNotFoundException(Exception):
         super().__init__(f"The member UUID \"{system_uuid}\" was not found in the database.")
 
 
+def exists(name: str) -> bool:
+    with open("data/systems.json", "r") as fh:
+        member_data = json.load(fh)
+
+    for m in member_data:
+        if System(m).name == name:
+            return True
+    return False
+
+
 def validate_uuid(uuid_query: str) -> bool:
     """
     Validate a UUID.
@@ -107,6 +136,6 @@ def validate_uuid(uuid_query: str) -> bool:
     """
 
     with open("data/systems.json", "r") as fh:
-        member_data = json.load(fh)
+        system_data = json.load(fh)
 
-    return uuid_query in member_data
+    return uuid_query in system_data

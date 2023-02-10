@@ -10,6 +10,8 @@ class Member:
 
         self.name: str = str()
         self.pronouns: str = str()
+        self.color_1: str = str()
+        self.color_2: str = str()
         self.age: str = str()
         self.age_category: str = str()
         self.role: str = str()
@@ -41,6 +43,8 @@ class Member:
 
         self.name = members_data[member_uuid]["name"]
         self.pronouns = members_data[member_uuid]["pronouns"]
+        self.color_1 = members_data[member_uuid]["color_1"]
+        self.color_2 = members_data[member_uuid]["color_2"]
         self.age = members_data[member_uuid]["age"]
         self.age_category = members_data[member_uuid]["age_category"]
         self.role = members_data[member_uuid]["role"]
@@ -62,6 +66,8 @@ class Member:
             "age": self.age,
             "age_category": self.age_category,
             "role": self.role,
+            "color_1": self.color_1,
+            "color_2": self.color_2,
             "start_tag": self.start_tag,
             "end_tag": self.end_tag,
             "typing_quirk": self.typing_quirk,

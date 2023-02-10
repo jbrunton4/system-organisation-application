@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>{{ system_name }} : {{ member_name }}</title>
+    <title>{{ system_name }}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/universal.css') }}" />
     <style>
             body {
@@ -23,7 +23,7 @@
   height: auto;
 
   border-radius: 12px;
-  background: {{ color_1 }};
+  background: linear-gradient(to bottom, #47312d, #d3aa93);
 }
 
 #main {
@@ -34,7 +34,7 @@
   margin: 1%;
 
   border-radius: 12px;
-  background: linear-gradient(to bottom, {{ color_1 }}, {{ color_2 }});
+  background: linear-gradient(to bottom, #1c1312, #55443b);
 
   padding-top: 5%;
   padding-bottom: 5%;
@@ -52,7 +52,7 @@
   margin-left: 5%;
   margin-top: -15%;
   border-radius: 50%;
-  border: 5px solid {{ color_1 }};
+  border: 5px solid #302420;
   margin-bottom: 0;
 }
 
@@ -131,35 +131,18 @@
 
 <div id="outer">
     <div id="main">
-        <!-- DO NOT EDIT ABOVE THIS POINT -->
-
-        <!-- THIS ONE IS FOR THE BANNER -->
-        <img
-                src="{{ banner_url }}"
-                id="banner"
-        />
-
-        <!-- THIS ONE IS THE PFP - IF ITS NOT SQUARE IT WILL SQUISH -->
-        <img
-                src="{{ profile_picture_url }}"
-                id="pfp"
-        />
 
         <div id="frosted">
-            <span style="font-size: 3vh"><b> {{ name }}</b></span>
-            <span style="font-size: 2vh; color: #b8babd">&nbsp; {{ pronouns }}</span>
+            <span style="font-size: 5vh"><b>Error 404</b></span>
             <br/>
-            <span style="font-size: 2vh; color: #b8babd"> {{ role }}</span> <br/>
-            <span style="font-size: 2vh; color: #b8babd"> {{ age }} ({{ age_category }})</span>
+            <span style="font-size: 2vh; color: #b8babd">Page Not Found</span> <br/>
             <hr/>
 
-            <u>Proxy tags: </u> {{ proxy_tags }}<br/>
-            <u>Typing quirk:</u> {{ typing_quirk }}<br/>
-            <u>Description:</u> {{ description }}<br/>
-            <u>Extra Info:</u> {{ extra_info }}
+            The page you're looking for might have been moved, deleted,
+            or had its name changed. If you're sure there's meant to be
+            something here, check back later - the page or site might be
+            down for maintenance.
 
-            <br/>
-            <hr/>
 
         </div>
     </div>

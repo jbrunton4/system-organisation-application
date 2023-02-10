@@ -13,7 +13,7 @@ def system_view():
         return flask.make_response(flask.render_template("errors/400.html"))  # @todo: Make error 400 bad request
 
     profile_picture_url = system.profile_picture_url
-    banner_url = system.banner_url  # @todo: Give systems a pfp and banner
+    banner_url = system.banner_url
 
     if profile_picture_url == "":
         profile_picture_url = flask.url_for("static", filename="images/default_avatar.png")
@@ -32,7 +32,6 @@ def system_view():
     member_list_html = "<ul>"
     for m in member_list:
         member_list_html += f"<li><a href='/system/member/view?id={m.get_uuid()}'>{m.start_tag}{m.name}{m.end_tag}</a></li>"
-        # @todo: Add start and close tags to member and to here
     member_list_html += "</ul>"
 
     return flask.make_response(flask.render_template("system/view.html",
@@ -43,6 +42,7 @@ def system_view():
                                                      description=system.description,
                                                      banner_url=banner_url,
                                                      profile_picture_url=profile_picture_url,
-                                                     member_list=flask.Markup(member_list_html)
-                                                     ))
+                                                     member_list=flask.Markup(member_list_html),
+                                                     color_1=system.color_1,
+    color_2=system.color_2))
 

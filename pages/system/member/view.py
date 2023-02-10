@@ -6,7 +6,6 @@ import flask
 
 @app.route("/system/member/view", methods=["GET", "POST"])
 def system_member_view():
-
     member_uuid = flask.request.args.get("id")
     try:
         member = Member(member_uuid)
@@ -33,5 +32,6 @@ def system_member_view():
                                                      description=member.description,
                                                      extra_info=flask.Markup(member.extra_info),
                                                      banner_url=banner_url,
-                                                     profile_picture_url=profile_picture_url
-                                                     ))
+                                                     profile_picture_url=profile_picture_url,
+                                                     color_1=member.color_1,
+                                                     color_2=member.color_2))
