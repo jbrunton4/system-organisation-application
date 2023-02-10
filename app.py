@@ -5,6 +5,7 @@ app = flask.Flask(__name__)
 import objects
 
 from pages.system.member import view
+from pages.system import view
 
 
 

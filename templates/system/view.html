@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>{{ system_name }} : {{ member_name }}</title>
+    <title>{{ system_name }}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/universal.css') }}" />
     <style>
             body {
@@ -147,18 +147,12 @@
 
         <div id="frosted">
             <span style="font-size: 3vh"><b> {{ name }}</b></span>
-            <span style="font-size: 2vh; color: #b8babd">&nbsp; {{ pronouns }}</span>
             <br/>
-            <span style="font-size: 2vh; color: #b8babd"> {{ role }}</span> <br/>
-            <span style="font-size: 2vh; color: #b8babd"> {{ age }} ({{ age_category }})</span>
+            <span style="font-size: 2vh; color: #b8babd"> {{ description }}</span> <br/>
             <hr/>
 
-            <u>Proxy tags: </u> {{ proxy_tags }}<br/>
-            <u>Typing quirk:</u> {{ typing_quirk }}<br/>
-            <u>Description:</u> {{ description }}<br/>
-            <u>Extra Info:</u> {{ extra_info }}
+            {{ member_list }}
 
-            <br/>
             <hr/>
 
         </div>

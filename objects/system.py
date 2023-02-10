@@ -11,22 +11,33 @@ class System:
 
         # initialise attributes
         self._uuid: str = str(uuid.uuid4())
-        self._name: str = str()
+
+        self.name: str = str()
+        self.description: str = str()
+        self.system_tag: str = str()
+        self.profile_picture_url: str = str()
+        self.banner_url: str = str()
+
         self._members: List[str] = []
-        self._description: str = str()
 
         # if a valid UUID is passed, load data
         self._load_data(system_uuid)
 
     def _save_data(self):
-        with open("systems.json", "r") as fh:
+        with open("data/systems.json", "r") as fh:
             systems_data = json.load(fh)
 
         systems_data[self._uuid] = {
-            "name": self._name,
+            "name": self.name,
             "members": self._members,
-            "description": self._description,
+            "description": self.description,
+            "system_tag": self.system_tag,
+            "profile_picture_url": self.profile_picture_url,
+            "banner_url": self.banner_url
         }
+
+        with open("data/systems.json", "r") as fh:
+            json.dump(systems_data, fh)
 
     def _load_data(self, system_uuid) -> None:
 
@@ -39,29 +50,19 @@ class System:
             return
 
         # load systems data
-        with open("systems.json", "r") as fh:
+        with open("data/systems.json", "r") as fh:
             system_data = json.load(fh)
 
         # modify instance attributes
         self._uuid = system_uuid
-        self._name = system_data[system_uuid]["name"]
+
+        self.name = system_data[system_uuid]["name"]
+        self.description = system_data[system_uuid]["description"]
+        self.system_tag = system_data[system_uuid]["system_tag"]
+        self.profile_picture_url = system_data[system_uuid]["profile_picture_url"]
+        self.banner_url = system_data[system_uuid]["banner_url"]
+
         self._members = system_data[system_uuid]["members"]
-        self._description = system_data[system_uuid]["description"]
-
-    def get_name(self) -> str:
-        """
-        Get a system's name/title
-        :return: This instance's name attribute
-        """
-        return self._name
-
-    def set_name(self, name: str) -> None:
-        """
-        Sets the system's name/title
-        :param name: The new name to set
-        :return: None
-        """
-        self._name = name
 
     def get_members(self) -> List[str]:
         """
@@ -105,7 +106,7 @@ def validate_uuid(uuid_query: str) -> bool:
     :return: True if UUID exists else False
     """
 
-    with open("systems.json", "r") as fh:
+    with open("data/systems.json", "r") as fh:
         member_data = json.load(fh)
 
     return uuid_query in member_data

@@ -1,73 +1,79 @@
 import json
-
+import uuid
 
 
 class Member:
 
-    def __init__(self):
-        self._name: str = str()
-        self._pronouns: str = str()
-        self._age: str = str()
-        self._age_category: str = str()
-        self._role: str = str()
-        self._proxy_tags: str = str()
-        self._typing_quirk: str = str()
-        self._description: str = str()
-        self._extra_info: str = str()
+    def __init__(self, member_uuid: str = None):
 
-    def get_name(self) -> str:
-        return self._name
+        self._uuid: str = str(uuid.uuid4())
 
-    def set_name(self, name: str) -> None:
-        self._name = name
+        self.name: str = str()
+        self.pronouns: str = str()
+        self.age: str = str()
+        self.age_category: str = str()
+        self.role: str = str()
+        self.start_tag: str = str()
+        self.end_tag: str = str()
+        self.typing_quirk: str = str()
+        self.description: str = str()
+        self.extra_info: str = str()
+        self.profile_picture_url: str = str()
+        self.banner_url: str = str()
 
-    def get_pronouns(self) -> str:
-        return self._pronouns
+        self._load_data(member_uuid)
 
-    def set_pronouns(self, pronouns: str) -> None:
-        self._pronouns = pronouns
+    def _load_data(self, member_uuid) -> None:
 
-    def get_age(self) -> str:
-        return self._age
+        # if loading null UUID, return
+        if member_uuid is None:
+            return
 
-    def set_age(self, age: str) -> None:
-        self._age = age
+        # if system data not found, return
+        if not validate_uuid(member_uuid):
+            return
 
-    def get_age_category(self) -> str:
-        return self._age_category
+        # load systems data
+        with open("data/members.json", "r") as fh:
+            members_data = json.load(fh)
 
-    def set_age_category(self, age_category: str) -> None:
-        self._age_category = age_category
+        self._uuid = member_uuid
 
-    def get_role(self) -> str:
-        return self._role
+        self.name = members_data[member_uuid]["name"]
+        self.pronouns = members_data[member_uuid]["pronouns"]
+        self.age = members_data[member_uuid]["age"]
+        self.age_category = members_data[member_uuid]["age_category"]
+        self.role = members_data[member_uuid]["role"]
+        self.start_tag = members_data[member_uuid]["start_tag"]
+        self.end_tag = members_data[member_uuid]["end_tag"]
+        self.typing_quirk = members_data[member_uuid]["typing_quirk"]
+        self.description = members_data[member_uuid]["description"]
+        self.extra_info = members_data[member_uuid]["extra_info"]
+        self.profile_picture_url = members_data[member_uuid]["profile_picture_url"]
+        self.banner_url = members_data[member_uuid]["banner_url"]
 
-    def set_role(self, role: str) -> None:
-        self._role = role
+    def _save_data(self):
+        with open("data/members.json", "r") as fh:
+            members_data = json.load(fh)
 
-    def get_proxy_tags(self) -> str:
-        return self._proxy_tags
+        members_data[self._uuid] = {
+            "name": self.name,
+            "pronouns": self.pronouns,
+            "age": self.age,
+            "age_category": self.age_category,
+            "role": self.role,
+            "start_tag": self.start_tag,
+            "end_tag": self.end_tag,
+            "typing_quirk": self.typing_quirk,
+            "description": self.description,
+            "extra_info": self.extra_info,
+        }
 
-    def set_proxy_tags(self, proxy_tags: str) -> None:
-        self._proxy_tags = proxy_tags
+        with open("data/members.json", "w") as fh:
+            json.dump(members_data, fh)
 
-    def get_typing_quirk(self) -> str:
-        return self._typing_quirk
-
-    def set_typing_quirk(self, typing_quirk: str) -> None:
-        self._typing_quirk = typing_quirk
-
-    def get_description(self) -> str:
-        return self._description
-
-    def set_description(self, description: str) -> None:
-        self._description = description
-
-    def get_extra_info(self) -> str:
-        return self._extra_info
-
-    def set_extra_info(self, extra_info: str) -> None:
-        self._extra_info = extra_info
+    def get_uuid(self):
+        return self._uuid
 
 
 class MemberNotFoundException(Exception):
@@ -85,7 +91,7 @@ def validate_uuid(uuid_query: str) -> bool:
     :return: True if UUID exists else False
     """
 
-    with open("members.json", "r") as fh:
+    with open("data/members.json", "r") as fh:
         member_data = json.load(fh)
 
     return uuid_query in member_data
