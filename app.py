@@ -17,4 +17,4 @@ def index():
 
 
 # @todo: Make an "about" page - devs, policies, upcoming features, version
-app.run(host="0.0.0.0", port=81)
+app.run()
