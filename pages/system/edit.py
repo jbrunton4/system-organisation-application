@@ -6,7 +6,7 @@ from objects import system, member
 @app.route("/system/edit", methods=["GET", "POST"])
 def edit_system():
 
-    system_uuid = flask.request.cookies.get("uuid")  # @todo: Cookie UUID and token on login.
+    system_uuid = flask.request.cookies.get("uuid")
     if not system.System(system_uuid).token == flask.request.cookies.get("token"):
         return flask.make_response(flask.redirect("/account/login"))
 

@@ -21,14 +21,12 @@ def signup():
         new_system.save_data()
 
         res = flask.make_response(flask.redirect("/system/edit"))
-        res.set_cookie("uuid", new_system.get_uuid(), secure=True, expires=3_000_000)
-        res.set_cookie("token", new_system.token, secure=True, expires=3_000_000)
+        res.set_cookie("uuid", new_system.get_username(), secure=True)
+        res.set_cookie("token", new_system.token, secure=True)
         return res
 
     return flask.render_template("account/signup.html",
                                  status="")
 
-# @todo: Make login page
-# @todo: Make token reset page
 # @todo: Make member edit page
 # @todo: Password change page

@@ -1,6 +1,5 @@
 {
   "lunar": {
-    "username": "lunar",
     "password": "password",
     "token": "tokenthing",
     "color_1": "#382f28",
@@ -16,8 +15,7 @@
     "profile_picture_url": "https://i.pinimg.com/originals/ea/35/35/ea3535b38e4e1b019940fcf44834f623.gif",
     "banner_url": "https://img.freepik.com/premium-photo/abstract-starry-space-background-with-bright-stars-night-sky-banner_213524-284.jpg"
   },
-  "df7cdeff-6440-4020-9bb1-5247b6d4c52d": {
-    "username": "PoshTest",
+  "poshTest": {
     "password": "test",
     "token": "zlTSBL6dgUEHZ4ZCXTnw7FBkClb9nkUcuBwwBetBKLmCV-cI1_xARcfdC3OgDhiN5XGVfk7zmPyWw-Bnl6umtw",
     "color_1": "",
