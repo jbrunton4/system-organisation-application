@@ -4,8 +4,8 @@ from objects import system
 
 
 @app.route("/account/reset_token/", methods=["GET", "POST"])
-def reset_token():
-    print(flask.request.method)
+def reset_token() -> flask.Response:
+
     if flask.request.method == "POST":
         res = flask.make_response(flask.redirect("/account/token_reset_success"))
         res.set_cookie("uuid", "", expires=0, secure=True)
@@ -17,4 +17,4 @@ def reset_token():
 
     s = system.System(flask.request.cookies.get("uuid"))
 
-    return flask.render_template("account/token-reset.html", system_name=s.name)
+    return flask.make_response(flask.render_template("account/token-reset.html", system_name=s.name))

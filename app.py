@@ -12,7 +12,7 @@ from pages.system.member import view, edit, new, remove
 
 
 @app.route("/", methods=["GET", "POST"])
-def index():
+def index() -> flask.Response:
     return flask.make_response(flask.render_template("index.html"))
 
 

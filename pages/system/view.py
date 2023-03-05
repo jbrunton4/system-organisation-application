@@ -5,7 +5,7 @@ from objects.member import Member, MemberNotFoundException
 
 
 @app.route("/system/view", methods=["GET", "POST"])
-def system_view():
+def system_view() -> flask.Response:
     system_uuid = flask.request.args.get("id")
     try:
         system = System(system_uuid)

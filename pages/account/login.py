@@ -5,7 +5,7 @@ import json
 
 
 @app.route("/account/login", methods=["GET", "POST"])
-def login():
+def login() -> flask.Response:
     if flask.request.method == "POST":
         # get login data from form
         username = flask.request.form["username"]

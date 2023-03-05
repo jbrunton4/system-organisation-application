@@ -5,7 +5,7 @@ import flask
 
 
 @app.route("/system/member/view", methods=["GET", "POST"])
-def system_member_view():
+def system_member_view() -> flask.Response:
     member_uuid = flask.request.args.get("id")
     try:
         member = Member(member_uuid)

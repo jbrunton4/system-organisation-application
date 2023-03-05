@@ -6,17 +6,19 @@ import flask
 
 
 @app.route("/system/member/remove", methods=["GET", "POST"])
-def system_member_remove():
+def system_member_remove() -> flask.Response:
     system_id = flask.request.args.get("system_id")
 
     try:
         s = System(system_id)
     except SystemNotFoundException:
+        flask.abort(403)
         return flask.make_response(flask.render_template("errors/403.html"))
 
     # validate login info
     token = flask.request.cookies.get("token")
     if not s.validate_token(token):
+        flask.abort(403)
         return flask.make_response(flask.render_template("errors/403.html"))
 
     # get the member
@@ -24,6 +26,7 @@ def system_member_remove():
     try:
         m = Member(member_id)
     except MemberNotFoundException:
+        flask.abort(403)
         return flask.make_response(flask.render_template("errors/403.html"))
 
     # remove the member

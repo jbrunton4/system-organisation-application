@@ -5,15 +5,12 @@ import flask
 
 
 @app.route("/system/member/edit", methods=["GET", "POST"])
-def system_member_edit():
+def system_member_edit() -> flask.Response:
     member_uuid = flask.request.args.get("id")
     try:
         member = Member(member_uuid)
     except MemberNotFoundException:
         return flask.make_response(flask.render_template("errors/404.html"))
-
-    profile_picture_url = member.profile_picture_url
-    banner_url = member.banner_url
 
     if flask.request.method == "POST":
         member.name = flask.request.form["name"]
