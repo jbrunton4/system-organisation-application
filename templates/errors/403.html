@@ -1,38 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-
-* {
-  font-family: "Roboto", sans-serif;
-}
-
-/* Tooltip container */
-.tooltip {
-  position: relative;
-  display: inline-block;
-}
-
-/* Tooltip text */
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 25vw;
-  background-color: #36393f;
-  border: 2px solid black;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
-
-  /* Position the tooltip text - see examples below! */
-  position: absolute;
-  z-index: 1;
-}
-
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
-
-/* general stuff */
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>{{ system_name }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/universal.css') }}" />
+    <style>
             body {
   background: #36393f;
 }
@@ -51,20 +23,18 @@
   height: auto;
 
   border-radius: 12px;
-
+  background: linear-gradient(to bottom, #47312d, #d3aa93);
 }
 
-
-
 #main {
+  background: #ffff00;
   width: 98%;
   height: auto;
 
   margin: 1%;
 
   border-radius: 12px;
-
-
+  background: linear-gradient(to bottom, #1c1312, #55443b);
 
   padding-top: 5%;
   padding-bottom: 5%;
@@ -150,42 +120,41 @@
 }
 
 #frosted a {
-  color: #ADD8E6;
+  text-decoration: none;
+  color: #ffffff;
 }
 
 
-#frosted form input {
-    margin: 2%;
-    padding: 2%;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 24px;
-    border: 1px solid #c3c3c3;
-    transition: 0.2s ease-out;
-    color: #ffffff;
-}
+    </style>
+</head>
+<body>
 
-#frosted form input:hover {
-    border: 1px solid #ffffff;
-}
+<div id="outer">
+    <div id="main">
 
-#frosted form input:focus {
-    border: 1px solid #ffffff;
-    transform: scale(1.05);
-}
+        <div id="frosted">
+            <span style="font-size: 5vh"><b>Error 403</b></span>
+            <br/>
+            <span style="font-size: 2vh; color: #b8babd">Forbidden</span> <br/>
+            <hr/>
 
-#frosted form button {
-    margin: 2%;
-    padding: 2.5%;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 24px;
-    border: 1px solid #c3c3c3;
-    transition: 0.2s ease-out;
-    color: #ffffff;
-}
+            The server understood your request, but refused to
+            authorise it.
 
-#frosted form button:hover {
-    border: 1px solid #ffffff;
-    background: rgba(100, 100, 100, 0.2);
-    transform: scale(1.05);
-}
+            <br /><br />
+            This might be because:
+            <ul>
+                <li>You're not logged in</li>
+                <li>You tried to edit someone else's system</li>
+                <li>The member/system you're trying to edit doesn't exist</li>
+                <li>You gave the server incorrect data</li>
+            </ul>
 
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

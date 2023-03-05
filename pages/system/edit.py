@@ -28,7 +28,8 @@ def edit_system():
 
         table_content += f"<tr><td>{m.start_tag}{m.name}{m.end_tag}</td>" \
                          f"<td style='text-align: right;'><button style='padding: 5px; border-radius: 4px; type='submit' name='edit_{m.get_uuid()}'>Edit</button></td>" \
-                         f"<td><button style='padding: 5px; border-radius: 4px; border: 1px solid #f00; color: #f00' type='submit' name='remove_{m.get_uuid()}'>Remove</button></td></tr>"
+                         f"<td><input type='button' value='Remove' style='padding: 5px; border-radius: 4px; border: 1px solid #f00; color: #f00' " \
+                         f"onclick=\"window.location.href=window.location.origin+'/system/member/remove?system_id={s.username}&member_id={m.get_uuid()}';\" /></td></tr>"
 
     return flask.make_response(flask.render_template("system/edit.html",
                                                      system_name=s.name,
@@ -38,5 +39,6 @@ def edit_system():
                                                      color_2=s.color_2,
                                                      avatar_url=s.profile_picture_url,
                                                      banner_url=s.banner_url,
+                                                     uuid=s.username,
                                                      table_content=flask.Markup(table_content)
                                                      ))

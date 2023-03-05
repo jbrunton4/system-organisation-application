@@ -109,6 +109,16 @@ class System:
         self.token = token_urlsafe(64)
         self.save_data()
 
+    def validate_token(self, token_attempt) -> bool:
+        return token_attempt == self.token
+
+    def get_uuid(self) -> str:
+        """
+        Alias for system.username
+        :return: system.username
+        """
+        return self.username
+
 
 class SystemNotFoundException(Exception):
     """
