@@ -7,7 +7,6 @@ import flask
 
 @app.route("/system/member/remove", methods=["GET", "POST"])
 def system_member_remove():
-
     system_id = flask.request.args.get("system_id")
 
     try:

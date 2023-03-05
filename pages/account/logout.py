@@ -5,7 +5,6 @@ from objects import system
 
 @app.route("/account/logout/", methods=["GET", "POST"])
 def logout():
-
     if not system.exists(flask.request.cookies.get("uuid")):
         return flask.make_response(flask.render_template("account/logout-success.html"))
 

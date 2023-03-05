@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/universal.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/universal.css') }}"/>
     <style>
             body {
   background: #36393f;
@@ -193,6 +193,7 @@ text-align: center;
  }
 
 
+
     </style>
 </head>
 <body>
@@ -208,14 +209,15 @@ text-align: center;
 
             <div style="width: 100%; text-align: center;">
 
-                <br />
-                <a class="redirect-a" href="/system/view?id={{ username }}">View</a> <a class="redirect-a" href="/system/edit">Edit</a>
-                <br /><br /><br />
-                <a class="redirect-a-red" href="/account/reset_token">Reset Token</a> <a class="redirect-a-red" href="/account/logout">Log Out</a>
+                <br/>
+                <a class="redirect-a" href="/system/view?id={{ username }}">View</a> <a class="redirect-a"
+                                                                                        href="/system/edit">Edit</a>
+                <br/><br/><br/>
+                <a class="redirect-a-red" href="/account/reset_token">Reset Token</a> <a class="redirect-a-red"
+                                                                                         href="/account/logout">Log
+                Out</a>
 
             </div>&nbsp;
-
-
 
 
         </div>

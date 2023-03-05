@@ -11,12 +11,9 @@ from pages.system import view, edit
 from pages.system.member import view, edit, new, remove
 
 
-
 @app.route("/", methods=["GET", "POST"])
 def index():
     return flask.make_response(flask.render_template("index.html"))
 
 
-# @todo: Make an "about" page - devs, policies, upcoming features, version
-# @todo: Make a "how it works" page, explaining data structures and stuff
 app.run(host="0.0.0.0", port=81)

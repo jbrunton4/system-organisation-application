@@ -15,4 +15,3 @@ def error_403_demo():
 @app.route("/errors/404", methods=["GET"])
 def error_404_demo():
     return flask.render_template("/errors/404.html")
-

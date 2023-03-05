@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>Sign Up</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/universal.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/universal.css') }}"/>
     <style>
             body {
   background: #36393f;
@@ -163,6 +163,7 @@ text-align: center;
 }
 
 
+
     </style>
 </head>
 <body>
@@ -177,16 +178,17 @@ text-align: center;
             <hr/>
 
             <form method="post">
-                <input type="text" name="username" placeholder="Username..." /><br />
-                <input type="password" name="password" placeholder="Password..." /><br />
-                <input type="password" name="password_repeat" placeholder="Retype Password..." /><br />
-                <button type="submit">Sign Up</button><br />
+                <input type="text" name="username" placeholder="Username..."/><br/>
+                <input type="password" name="password" placeholder="Password..."/><br/>
+                <input type="password" name="password_repeat" placeholder="Retype Password..."/><br/>
+                <button type="submit">Sign Up</button>
+                <br/>
 
                 {{ status }}
 
-                 <br />
-            <br />
-            Already have an account? <br /><a href="/account/login">Log In</a>
+                <br/>
+                <br/>
+                Already have an account? <br/><a href="/account/login">Log In</a>
 
             </form>
 

@@ -5,7 +5,6 @@ from objects import system
 
 @app.route("/account/reset_token/", methods=["GET", "POST"])
 def reset_token():
-
     print(flask.request.method)
     if flask.request.method == "POST":
         res = flask.make_response(flask.redirect("/account/token_reset_success"))

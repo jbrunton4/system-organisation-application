@@ -7,7 +7,6 @@ import flask
 
 @app.route("/system/member/new", methods=["GET", "POST"])
 def system_member_new():
-
     system_id = flask.request.args.get("system_id")
 
     try:
@@ -24,6 +23,5 @@ def system_member_new():
     new_member.save_data()
     s.add_member(new_member.get_uuid())
     s.save_data()
-
 
     return flask.redirect(f"/system/member/edit?id={new_member.get_uuid()}")

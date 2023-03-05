@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8"/>
     <title>Sign Up</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/universal.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/table.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/universal.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/table.css') }}"/>
     <style>
 
     #outer {
@@ -13,6 +13,8 @@
 #main {
 background: linear-gradient(to bottom, {{ color_1 }}, {{ color_2 }});
 }
+
+
 
     </style>
 </head>
@@ -28,48 +30,59 @@ background: linear-gradient(to bottom, {{ color_1 }}, {{ color_2 }});
             <hr/>
 
             <button onclick="window.location.href=window.location.origin+'/account/dashboard'"
-                style="padding: 5px; border-radius: 4px; border: 1px solid #fff; background: none; color: #fff;">Back to Dashboard</button>
+                    style="padding: 5px; border-radius: 4px; border: 1px solid #fff; background: none; color: #fff;">
+                Back to Dashboard
+            </button>
 
             <form method="post">
 
 
                 <h3>Login Data</h3>
-                Username: {{ username }}<br />
-                Password: ******** (<a href="#">change</a>)<br />
-                <button>Reset Token</button><br />
+                Username: {{ username }}<br/>
+                Password: ******** (<a href="#">change</a>)<br/>
+                <button>Reset Token</button>
+                <br/>
 
-                <hr />
+                <hr/>
                 <h3>System Info</h3>
                 System Name: <input type="text" name="system_name" value="{{ system_name }}"/>
-                System Tag: <input type="text" name="system_tag" value="{{ system_tag }}"/>
 
-                <hr />
+                <div class="tooltip"><h3><span class="iconify" data-icon="mdi:help-circle"></span> System Tag: </h3>
+                    <span class="tooltiptext">
+                        A system tag is a part of an alter's display name with proxy bots like Tupperbox and
+                        Pluralkit. It can be used for people outside your system to identify which system
+                        you're in and/or find your account in case they need it.
+                    </span>
+                </div>
+                <input type="text" name="system_tag" value="{{ system_tag }}"/>
+
+                <hr/>
                 <h3>Customisation</h3>
-                Color 1: <input type="color" name="color_1" value="{{ color_1 }}" /><br />
-                Color 2: <input type="color" name="color_2" value="{{ color_2 }}" /><br />
-                Avatar URL: <input type="url" name="avatar_url" value="{{ avatar_url }}"/><br />
-                Banner URL: <input type="url" name="banner_url" value="{{ banner_url }}"/><br />
+                Color 1: <input type="color" name="color_1" value="{{ color_1 }}"/><br/>
+                Color 2: <input type="color" name="color_2" value="{{ color_2 }}"/><br/>
+                Avatar URL: <input type="url" name="avatar_url" value="{{ avatar_url }}"/><br/>
+                Banner URL: <input type="url" name="banner_url" value="{{ banner_url }}"/><br/>
 
-                                <button name="submit" type="submit" value="save"
-                style="padding: 5px; border-radius: 4px; border: 1px solid #0f0;">Save</button>
+                <button name="submit" type="submit" value="save"
+                        style="padding: 5px; border-radius: 4px; border: 1px solid #0f0;">Save
+                </button>
 
 
                 <table class="sortable">
-        <thead>
-            <tr>
-                <th>Member</th>
-                <th colspan="2">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{ table_content }}
-        </tbody>
-    </table>
+                    <thead>
+                    <tr>
+                        <th>Member</th>
+                        <th colspan="2">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{ table_content }}
+                    </tbody>
+                </table>
 
                 <input type="button"
                        onclick="window.location.href=window.location.origin+'/system/member/new?system_id={{ uuid }}';"
-                value="New Member"/>
-
+                       value="New Member"/>
 
 
             </form>

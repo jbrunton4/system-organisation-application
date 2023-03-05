@@ -13,7 +13,8 @@ def signup():
 
         if flask.request.form["password"] != flask.request.form["password_repeat"]:
             return flask.render_template("account/signup.html",
-                                         status=flask.Markup(f"<font style='color: #ff0000;'>Passwords don't match!</font>"))
+                                         status=flask.Markup(
+                                             f"<font style='color: #ff0000;'>Passwords don't match!</font>"))
 
         new_system = system.System()
         new_system.username = flask.request.form["username"]

@@ -44,5 +44,4 @@ def system_view():
                                                      profile_picture_url=profile_picture_url,
                                                      member_list=flask.Markup(member_list_html),
                                                      color_1=system.color_1,
-    color_2=system.color_2))
-
+                                                     color_2=system.color_2))

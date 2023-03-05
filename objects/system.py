@@ -134,4 +134,3 @@ def exists(username: str) -> bool:
         system_data = json.load(fh)
 
     return username in system_data
-

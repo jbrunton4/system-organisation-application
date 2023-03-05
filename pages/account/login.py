@@ -6,7 +6,6 @@ import json
 
 @app.route("/account/login", methods=["GET", "POST"])
 def login():
-
     if flask.request.method == "POST":
         # get login data from form
         username = flask.request.form["username"]
@@ -17,7 +16,8 @@ def login():
         with open("data/systems.json", "r") as fh:
             system_data = json.load(fh)
         if username not in system_data:
-            return flask.make_response(flask.render_template("account/login.html", status=flask.Markup("<font style='color: #f00;'>Account not found!</font>")))
+            return flask.make_response(flask.render_template("account/login.html", status=flask.Markup(
+                "<font style='color: #f00;'>Account not found!</font>")))
         s = system.System(username)
 
         # verify password
