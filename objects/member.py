@@ -5,9 +5,13 @@ import uuid
 class Member:
 
     def __init__(self, member_uuid: str = None):
+        """
+        Constructor for this class
+        :param member_uuid: UUID to load data from database. If none given, creates a blank template with new UUID.
+        """
 
+        # initialise attributes
         self._uuid: str = str(uuid.uuid4())
-
         self.name: str = str()
         self.pronouns: str = str()
         self.color_1: str = str()
@@ -23,9 +27,15 @@ class Member:
         self.profile_picture_url: str = str()
         self.banner_url: str = str()
 
+        # load from database if UUId given
         self._load_data(member_uuid)
 
     def _load_data(self, member_uuid) -> None:
+        """
+        Loads data from the database into this instance
+        :param member_uuid: The UUID to fetch data from
+        :return: None
+        """
 
         # if loading null UUID, return
         if member_uuid is None:
@@ -56,7 +66,11 @@ class Member:
         self.profile_picture_url = members_data[member_uuid]["profile_picture_url"]
         self.banner_url = members_data[member_uuid]["banner_url"]
 
-    def save_data(self):
+    def save_data(self) -> None:
+        """
+        Save this instance's data to the database
+        :return: None
+        """
         with open("data/members.json", "r") as fh:
             members_data = json.load(fh)
 
@@ -80,7 +94,11 @@ class Member:
         with open("data/members.json", "w") as fh:
             json.dump(members_data, fh)
 
-    def get_uuid(self):
+    def get_uuid(self) -> str:
+        """
+        Getter method for UUID
+        :return: This instance's UUID
+        """
         return self._uuid
 
 

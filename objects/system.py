@@ -7,10 +7,13 @@ from typing import List
 
 class System:
 
-    def __init__(self, system_uuid: str = None):
+    def __init__(self, system_uuid: str = None) -> None:
+        """
+        Constructor for this class
+        :param system_uuid: UUID to load data from database. If none given, creates a blank template with new UUID.
+        """
 
         # initialise attributes
-
         self.username: str = str()
         self.password: str = str()
         self.token: str = str(token_urlsafe(64))
@@ -21,13 +24,16 @@ class System:
         self.system_tag: str = str()
         self.profile_picture_url: str = str()
         self.banner_url: str = str()
-
         self._members: List[str] = []
 
         # if a valid UUID is passed, load data
         self._load_data(system_uuid)
 
-    def save_data(self):
+    def save_data(self) -> None:
+        """
+        Save this instance's data to the database
+        :return: None
+        """
         with open("data/systems.json", "r") as fh:
             systems_data = json.load(fh)
 
@@ -48,8 +54,13 @@ class System:
             json.dump(systems_data, fh)
 
     def _load_data(self, username) -> None:
+        """
+        Given primary key, load data from database
+        :param username: Primary key and UUID
+        :return: None
+        """
 
-        # if loading null UUID, return
+        # if loading null UUID, do nothing
         if username is None:
             return
 
@@ -77,6 +88,10 @@ class System:
         self._members = system_data[username]["members"]
 
     def get_username(self) -> str:
+        """
+        Getter method for username/UUID
+        :return:
+        """
         return self.username
 
     def get_members(self) -> List[str]:
@@ -105,11 +120,20 @@ class System:
         """
         self._members.remove(member_uuid)
 
-    def reset_token(self):
+    def reset_token(self) -> None:
+        """
+        Generates a new 64-byte URL safe token and saves
+        :return: None
+        """
         self.token = token_urlsafe(64)
         self.save_data()
 
     def validate_token(self, token_attempt) -> bool:
+        """
+        Validate a token for this instance
+        :param token_attempt: The token attempt to check against the token
+        :return: True if tokens match else False
+        """
         return token_attempt == self.token
 
     def get_uuid(self) -> str:
@@ -125,11 +149,16 @@ class SystemNotFoundException(Exception):
     Exception raised when a system is not found in the database.
     """
 
-    def __init__(self, system_uuid: str):
+    def __init__(self, system_uuid: str) -> None:
         super().__init__(f"The member UUID \"{system_uuid}\" was not found in the database.")
 
 
 def exists(username: str) -> bool:
+    """
+    Check if a primary key is present in the database
+    :param username: The primary key to check for
+    :return: True if present else False
+    """
     with open("data/systems.json", "r") as fh:
         system_data = json.load(fh)
 
