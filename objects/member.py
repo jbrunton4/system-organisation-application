@@ -56,7 +56,7 @@ class Member:
         self.profile_picture_url = members_data[member_uuid]["profile_picture_url"]
         self.banner_url = members_data[member_uuid]["banner_url"]
 
-    def _save_data(self):
+    def save_data(self):
         with open("data/members.json", "r") as fh:
             members_data = json.load(fh)
 
@@ -73,6 +73,8 @@ class Member:
             "typing_quirk": self.typing_quirk,
             "description": self.description,
             "extra_info": self.extra_info,
+            "profile_picture_url": self.profile_picture_url,
+            "banner_url": self.banner_url
         }
 
         with open("data/members.json", "w") as fh:

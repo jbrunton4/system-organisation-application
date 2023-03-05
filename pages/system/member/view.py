@@ -10,7 +10,7 @@ def system_member_view():
     try:
         member = Member(member_uuid)
     except MemberNotFoundException:
-        return flask.make_response(flask.render_template("errors/400.html"))  # @todo: Make error 400 bad request
+        return flask.make_response(flask.render_template("errors/404.html"))
 
     profile_picture_url = member.profile_picture_url
     banner_url = member.banner_url

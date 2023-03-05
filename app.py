@@ -4,7 +4,7 @@ app = flask.Flask(__name__)
 
 import objects
 
-from pages.system.member import view
+from pages.system.member import view, edit
 from pages.system import view, edit
 from pages.account import signup, welcome, login, dashboard, token_reset, token_reset_success, logout
 from pages import redirects
