@@ -4,9 +4,9 @@ app = flask.Flask(__name__)
 
 import objects
 
+from error_handler import error_404
 from pages import redirects
 from pages.account import signup, welcome, login, dashboard, token_reset, token_reset_success, logout
-from error_handler import error_404
 from pages.system import view, edit
 from pages.system.member import view, edit, new, remove
 
